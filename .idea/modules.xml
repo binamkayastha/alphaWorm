@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/alphaWorm.iml" filepath="$PROJECT_DIR$/alphaWorm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/will-sdk-1.8.1/will-sdk-1.8.1.iml" filepath="$PROJECT_DIR$/will-sdk-1.8.1/will-sdk-1.8.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alphaWorm.iml" filepath="$PROJECT_DIR$/.idea/modules/alphaWorm.iml" />
     </modules>
   </component>
 </project>

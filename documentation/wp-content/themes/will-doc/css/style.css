@@ -1,0 +1,77 @@
+html, body {height: 100%; max-height: 100%;}
+body {font-family: Helvetica Neue, Arial, sans-serif; font-size: 14px; color: #878787;}
+body {padding: 0; margin: 0;}
+
+a {color: #0097d4; text-decoration: none;}
+p, ul {line-height: 1.5;}
+
+blockquote {padding: .5rem 1rem; margin: .8rem 0; color: #7a7a7a; background-color: #F9F9F9; border-left: .25rem solid #e5e5e5;}
+blockquote > p {margin-top: 0;}
+blockquote p {font-size: 90%;}
+
+header {position: relative; height: 130px; margin-bottom: 70px; background-color: #0097D4; color: #FFFFFF;}
+header .title {position: absolute; left: 5%; top: 40px;}
+header .title div:first-child {font-size: 28px;}
+header #searchbox {position: absolute; top: 50px; right: 5%;}
+header #searchbox input {width: 150px;}
+header #searchbox .tt-dropdown-menu {background-color: #87defd; min-width: 200px; max-width: 280px; max-height: 400px; padding: 20px; overflow: hidden; text-align: initial;}
+header #searchbox .tt-dropdown-menu h3, .tt-dropdown-menu h4 {margin: 0; padding: 5px 5px; color: #FFFFFF; font-size: 16px; font-weight: bold;}
+header #searchbox .tt-suggestion {cursor: pointer; margin: 0; padding: 0px 10px; font-size: 16px;}
+header #searchbox .tt-suggestion:hover {color: #0097d4;}
+
+footer {height: 34px; line-height: 34px; margin: 60px 0; text-align: center;}
+footer span {display: inline-block; width: 1px; height: 18px; margin: 8px 5px 0; vertical-align: top; background-color: #878787;}
+footer a {margin: 0 5px; vertical-align: top;}
+
+#sitewrapper {display: -webkit-box; -webkit-align-content: space-between;}
+#sitewrapper {display: flex; align-content: space-between;}
+#sitewrapper {width: 75%; margin: 0 auto;}
+#sidebar {-webkit-box-flex: 1 1 350px;}
+#sidebar {flex: 1 1 350px;}
+#sidebar {min-width: 350px; margin-right: 50px;}
+#page_content {-webkit-box-flex: 99;}
+#page_content {flex: 99;}
+
+h1, h2, h3, h4, h5, h6 {color: #585858;}
+h1 {font-size: 36px; margin-top: 0; margin-bottom: 15px; font-weight: 300;}
+h2 {font-size: 28px; margin-bottom: 15px; font-weight: 300;}
+h3 {font-size: 20px; margin-top: 30px;}
+h4 {font-size: 14px; font-style: italic; padding: 5px 0 5px 10px; margin-top: 36px; background-color: #e5e5e5;}
+h3 ~ h4 {margin-top: 0;}
+h5 {font-size: 16px; font-style: italic; margin-top: 20px; margin-bottom: 10px;}
+
+table {width: 100%; margin: 30px 0; border: 1px solid #cecece; border-collapse: collapse;}
+table th {background-color: #e5e5e5;}
+table th, table td {padding: 5px 10px; border: 1px solid #cecece;}
+table tbody tr:nth-child(even) {background-color: #f9f9f9;}
+
+code, pre {font-family: Menlo, Monaco, "Courier New", monospace;}
+code {padding: .25em .5em; font-size: 85%; color: #bf616a; background-color: #f9f9f9; border-radius: 3px;}
+pre {display: block; margin-top: 0; margin-bottom: 1rem; padding: 1rem; font-size: .8rem; line-height: 1.4; white-space: pre; white-space: pre-wrap; word-break: break-all; word-wrap: break-word; background-color: #f9f9f9;}
+pre code {padding: 0; font-size: 90%; color: inherit; background-color: transparent;}
+
+.page-content .seealso:first-child {float: right; clear: right; margin-top: 58px; margin-bottom: 20px; margin-left: 50px; border: 1px solid #ccc; width: 350px;}
+.page-content .seealso:first-child h2 {margin: 10px 15px; border-bottom: 1px solid gainsboro; padding-bottom: 10px;}
+.page-content .seealso:first-child ul {margin: 15px 0;}
+.page-content .seealso:first-child p {margin: 0 15px 15px;}
+
+.prev-next-page {overflow: hidden; margin-top: 60px;}
+.prev-page {float: left;}
+.next-page {float: right;}
+
+.api p {margin: 8px 0;}
+.api table {margin: 15px 0;}
+.api h2 {margin-top: 0;}
+.api h4 {margin-top: 20px; margin-bottom: 7px;}
+.api h5 {margin-top: 15px;}
+.api .annotaions {margin-bottom: 15px;}
+.api .annotaions p {margin: 0;}
+.api h6 {font-size: 14px; font-style: italic; margin-top: 20px; margin-bottom: 10px;}
+.api h4 ~ p {margin-left: 10px;}
+.api h4 ~ h5 {margin-left: 10px;}
+
+.downloads th {text-align: left;}
+.downloads td {cursor: pointer;}
+.downloads .folder * {background-color: #0097d4; color: white;}
+.downloads td.size {text-align: right;}
+.downloads td.date {width: 150px; padding-left: 10px;}
