@@ -11,18 +11,12 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
 
     <script src="scripts/jquery.min.js"></script>
-
 
     <script type="text/javascript" src="scripts/js.ext.js"></script>
     <script type="text/javascript" src="scripts/js.ext.dom.js"></script>
@@ -31,13 +25,16 @@
     <script async type="text/javascript" src="engine/WacomInkEngine.js"></script>
 
     <script type="text/javascript" src="tutorials/Sample4/Part1.js"></script>
-  </head>
-    <!--
+
+<!--
     <style type="text/css">
             body {position: relative; overflow: hidden; margin: 0; padding: 0; background-color: #252525; color: white;}
             canvas {border: 0px none;}
             h2, p {margin-left: 20px;}
-    </style>-->
+    </style>
+    -->
+  </head>
+
   <body ng-app="starter">
 
     <ion-pane>
