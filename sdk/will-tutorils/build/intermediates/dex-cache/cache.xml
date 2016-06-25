@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/WPI/Documents/programming/Git/Github_Projects/alphaWorm/sdk/will-tutorils/drawing-with-touch/build/intermediates/exploded-aar/will-tutorils/will-sdk/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d517bedd159e4c6d8f243787cffc2a973f04d935">
+        <dex dex="/WPI/Documents/programming/Git/Github_Projects/alphaWorm/sdk/will-tutorils/drawing-with-touch/build/intermediates/pre-dexed/debug/classes-3a26ef67b3e67e690537ebe75dc1eb3996fb1adf.jar" />
+    </item>
+
+</items>
