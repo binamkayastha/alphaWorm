@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as HomeActions from '../actions/HomeActions';
 import styles from '../../css/app.css';
+import Studio from '../components/Studio'
 
 class Home extends Component {
   render() {
@@ -14,6 +15,8 @@ class Home extends Component {
         <button onClick={e => actions.changeTitle(prompt())}>
           Update Title
         </button>
+
+        <Studio />
       </main>
     );
   }
