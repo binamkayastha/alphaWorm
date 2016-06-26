@@ -9,9 +9,20 @@
     </md-list-item>
   </md-list>
   <md-divider></md-divider>
-  <md-subheader class="md-no-sticky">Languages</md-subheader>
+  <md-subheader class="md-no-sticky">Languages Demo</md-subheader>
   <md-list>
     <md-list-item class="md-2-line" ng-repeat="item in vm.languages">
+      <md-checkbox ng-model="item.done"></md-checkbox>
+      <div class="md-list-item-text" >
+        <h3>{{item.title}}</h3>
+      </div>
+      <md-button class="md-secondary" ng-href="#studio/{{item.title}}/{{item.font}}/{{item.fontsize}}">Start</md-button>
+    </md-list-item>
+  </md-list>
+  <md-divider></md-divider>
+  <md-subheader class="md-no-sticky">Font Demo</md-subheader>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="item in vm.font">
       <md-checkbox ng-model="item.done"></md-checkbox>
       <div class="md-list-item-text" >
         <h3>{{item.title}}</h3>

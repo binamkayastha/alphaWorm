@@ -87,6 +87,27 @@ app.controller('homeController', function() {
         fontsize: 100
       }
     ]
+    this.font = [
+      {
+        done: false,
+        title: "Arial",
+        font: "Arial",
+        fontsize: 100
+      },
+      {
+        done: false,
+        title: "Verdana",
+        font: "Verdana",
+        fontsize: 100
+      },
+      {
+        done: false,
+        title: "Serif",
+        font: "Serif",
+        fontsize: 100
+      }
+    ]
+
     this.getRandomColor = function () {
       return colors[Math.floor(Math.random() * colors.length)];
     }
