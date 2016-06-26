@@ -223,9 +223,9 @@ app.controller('studioController', function($routeParams, $mdDialog){
 		console.log("REQUIREMENT:: " + pass)
 
 		if(pass) {
-			this.showAlertSuccess(accuracy);
+			this.showAlertSuccess(Math.floor(accuracy));
 		} else {
-			this.showAlertFail((hit/totalTarget)*100);
+			this.showAlertFail(Math.floor((hit/totalTarget)*100));
 		}
 		WILL.clear();
   }

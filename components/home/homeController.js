@@ -72,7 +72,7 @@ app.controller('homeController', function() {
         done: false,
         title: "Здравствуйте",
         font: "Arial",
-        fontsize: 100
+        fontsize: 60
       },
       {
         done: false,
