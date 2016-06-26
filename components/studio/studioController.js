@@ -7,6 +7,8 @@ var WILL = {
 	init: function(width, height) {
 		this.initInkEngine(width, height);
 		this.initEvents();
+		this.width = width;
+		this.height = height;
 	},
 
 	initInkEngine: function(width, height) {
@@ -133,12 +135,19 @@ var WILL = {
 	},
 
   getPixels: function() {
-		// var canvas = document.getElementById("canvas");
-		// var gl = canvas.getContext("webgl");
-		// var pixels = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
-		// gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+		var canvas = document.getElementById("canvas");
+		var gl = canvas.getContext("webgl", {preserveDrawingBuffer: true});
 
-		return this.canvas.readPixels(0,0,100,100);
+		return canvas.toDataURL();
+
+		// console.log(gl.drawingBufferWidth)
+		// console.log(gl.drawingBufferHeight)
+		// var pixels = new Uint8ClampedArray(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+		// gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+		//
+		// return pixels;
+
+		// return this.canvas.readPixels(0,0,this.width,this.height);
   }
 };
 
@@ -163,15 +172,16 @@ var target = {
 app.controller('studioController', function(){
   // TODO: figure out how to use Module
   //      issue was that canvas was not ready when addPostScript is called
-  // Module.addPostScript(function() {
-  //   WILL.init(1600, 600);
-  // });
   var width = window.innerWidth;
   var height = window.innerHeight - 100;
-	width = 100
-	height = 100
+	// width = 100
+	// height = 100
   WILL.init(width, height);
+	// Module.addPostScript(function() {
+	// 	WILL.init(width, height);
+	// });
   target.init(width, height);
+
 
 	var getAlpha = function(pixels){
 		// Alpha is the 4th value in RGBA
@@ -194,40 +204,62 @@ app.controller('studioController', function(){
   this.check = function(){
     console.log("checking")
     console.log(WILL.getPixels());
-    console.log(target.getPixels());
 
-		var traceALPHA = getAlpha(WILL.getPixels());
-		var targetALPHA = getAlpha(target.getPixels());
 
-		var test = 0
-		var sum = 0
-		var sump=0
-		for(var i = 0; i < targetALPHA.length; i++) {
-			sump+=targetALPHA[i]
-		}
-		console.log("------------------" + sump)
-		console.log(traceALPHA.length + " ???? " + targetALPHA.length)
+  //   console.log(target.getPixels());
 
-		console.log(traceALPHA)
-		console.log(targetALPHA)
+					testcanvas = document.getElementById("test");
+			    testcanvas.width = width;
+					testcanvas.height = height;
 
-		var hit = 0;
-		var totalTrace = 0;
-		var totalTarget = 0;
+					ctx = testcanvas.getContext("2d");
 
-		for(var i = 0; i < traceALPHA.length; i++){
-			hit += ((targetALPHA[i] - traceALPHA[i]) == 0 && targetALPHA[i] == 1) ? 1 : 0;
-			totalTrace += traceALPHA[i]
-			totalTarget += targetALPHA[i]
-		}
+					var img = new Image;
+					img.onload = function(){
+					  ctx.drawImage(img,0,0); // Or at whatever offset you like
+					};
+					img.src = WILL.getPixels();
 
-		totalTarget = sump;
-
-		console.log("You had: " + hit + " hits out of " + totalTarget + " targets")
-		console.log("You had: " + hit + " hits out of " + totalTrace + " everything you traced")
-		console.log("accuracy target: " + hit/totalTarget)
-		console.log("accuracy trace: " + hit/totalTrace)
-		console.log("----")
+	//
+	// 	var WILLData = new ImageData(new Uint8ClampedArray(WILL.getPixels()), width, height);
+	// 	var targetData = target.getPixels();
+	// 	testcanvas.getContext("2d").putImageData(targetData, 0, 0)
+	//
+  //   var ctx = this.canvas.getContext("2d");
+  //   ctx.font = "300px Arial";
+	//
+	// 	var traceALPHA = getAlpha(WILL.getPixels());
+	// 	var targetALPHA = getAlpha(target.getPixels());
+	//
+	// 	var test = 0
+	// 	var sum = 0
+	// 	var sump=0
+	// 	for(var i = 0; i < targetALPHA.length; i++) {
+	// 		sump+=targetALPHA[i]
+	// 	}
+	// 	console.log("------------------" + sump)
+	// 	console.log(traceALPHA.length + " ???? " + targetALPHA.length)
+	//
+	// 	console.log(traceALPHA)
+	// 	console.log(targetALPHA)
+	//
+	// 	var hit = 0;
+	// 	var totalTrace = 0;
+	// 	var totalTarget = 0;
+	//
+	// 	for(var i = 0; i < traceALPHA.length; i++){
+	// 		hit += ((targetALPHA[i] - traceALPHA[i]) == 0 && targetALPHA[i] == 1) ? 1 : 0;
+	// 		totalTrace += traceALPHA[i]
+	// 		totalTarget += targetALPHA[i]
+	// 	}
+	//
+	// 	totalTarget = sump;
+	//
+	// 	console.log("You had: " + hit + " hits out of " + totalTarget + " targets")
+	// 	console.log("You had: " + hit + " hits out of " + totalTrace + " everything you traced")
+	// 	console.log("accuracy target: " + hit/totalTarget)
+	// 	console.log("accuracy trace: " + hit/totalTrace)
+	// 	console.log("----")
   }
 });
 

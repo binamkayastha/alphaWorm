@@ -1,10 +1,19 @@
-<form name="settingsForm">
-  <md-input-container class="md-block">
-    <label>Name</label>
-  </md-input-container>
-  <md-select ng-model="vm.language">
-   <md-option ng-repeat="l in vm.languages" value="{{l}}" ng-disabled="$index === 1">
-     {{l}}
-   </md-option>
- </md-select>
-</form>
+<md-content layout-padding ng-controller="settingsController as vm">
+  <form name="settingsForm">
+    <md-select ng-model="vm.language">
+     <md-option ng-repeat="l in vm.languages" ng-value="l">
+       {{l}}
+     </md-option>
+   </md-select>
+
+   <md-switch class="md-primary" ng-model="vm.alphabet">
+     Alphabet
+   </md-switch>
+   <md-switch class="md-primary" ng-model="vm.numbers">
+     Numbers
+   </md-switch>
+   <md-switch class="md-primary" ng-model="vm.shapes">
+     Shapes
+   </md-switch>
+  </form>
+</md-content>

@@ -152,6 +152,8 @@ CSS class since the keyframe will take charge of the animation */
 /*ACTUAL CSS*/
 .studio {
   position: relative;
+  /*height: 500px;*/
+  border: 1px solid blue;
 }
 
 .studio canvas {
@@ -164,5 +166,5 @@ CSS class since the keyframe will take charge of the animation */
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 100%;
+  /*width: 100%;*/
 }
