@@ -135,11 +135,11 @@ var WILL = {
 	},
 
   getPixels: function() {
-		var canvas = document.getElementById("canvas");
-		var gl = canvas.getContext("webgl", {preserveDrawingBuffer: true});
-
-		return canvas.toDataURL();
-
+		// var canvas = document.getElementById("canvas");
+		// var gl = canvas.getContext("webgl");
+		// //
+		// // return canvas.toDataURL();
+		//
 		// console.log(gl.drawingBufferWidth)
 		// console.log(gl.drawingBufferHeight)
 		// var pixels = new Uint8ClampedArray(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
@@ -147,7 +147,7 @@ var WILL = {
 		//
 		// return pixels;
 
-		// return this.canvas.readPixels(0,0,this.width,this.height);
+		return this.canvas.readPixels({top: 0, left: 0, right: this.width, bottom: this.height, width: this.width, height: this.height});
   }
 };
 
@@ -202,24 +202,35 @@ app.controller('studioController', function(){
 	}
 
   this.check = function(){
-    console.log("checking")
-    console.log(WILL.getPixels());
+		testcanvas = document.getElementById("test");
+    testcanvas.width = width;
+		testcanvas.height = height;
+		testctx = testcanvas.getContext("2d");
+
+		WILLPix = WILL.getPixels();
+		targetPix = target.getPixels();
+
+		testctx.putImageData(new ImageData (new Uint8ClampedArray(WILLPix), width, height), 0, 0)
 
 
-  //   console.log(target.getPixels());
-
-					testcanvas = document.getElementById("test");
-			    testcanvas.width = width;
-					testcanvas.height = height;
-
-					ctx = testcanvas.getContext("2d");
-
-					var img = new Image;
-					img.onload = function(){
-					  ctx.drawImage(img,0,0); // Or at whatever offset you like
-					};
-					img.src = WILL.getPixels();
-
+		//-----------------
+  //   console.log("checking")
+  //   console.log(WILL.getPixels());
+	//
+  // //   console.log(target.getPixels());
+	//
+	// 				testcanvas = document.getElementById("test");
+	// 		    testcanvas.width = width;
+	// 				testcanvas.height = height;
+	// 				ctx = testcanvas.getContext("2d");
+	//
+	// 				var img = new Image;
+	// 				img.onload = function(){
+	// 					console.log("draw image")
+	// 				};
+	// 				img.src = target.getPixels();
+	// 				ctx.putImageData(new ImageData(new Uint8ClampedArray(WILL.getPixels()), width, height),0,0); // Or at whatever offset you like
+//--------------------
 	//
 	// 	var WILLData = new ImageData(new Uint8ClampedArray(WILL.getPixels()), width, height);
 	// 	var targetData = target.getPixels();
