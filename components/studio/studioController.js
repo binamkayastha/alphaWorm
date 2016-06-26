@@ -161,7 +161,7 @@ var target = {
   }
 }
 
-app.controller('studioController', function($routeParams){
+app.controller('studioController', function($routeParams, $mdDialog){
 	this.text =  $routeParams.text;
 	this.font = $routeParams.font;
 	this.fontsize = $routeParams.fontsize + "px";
@@ -222,12 +222,40 @@ app.controller('studioController', function($routeParams){
 		console.log("ACCURACY:: " + hit/totalTrace * 100)
 		console.log("REQUIREMENT:: " + pass)
 
+		if(pass) {
+			this.showAlertSuccess(accuracy);
+		} else {
+			this.showAlertFail((hit/totalTarget)*100);
+		}
 		WILL.clear();
   }
 
 	this.clear = function(){
 		WILL.clear();
 	}
+
+	this.showAlertSuccess = function(accuracy){
+		console.log()
+		$mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Nice work!!')
+        .textContent('Your accuracy was: ' + accuracy)
+        .ariaLabel('Nice Work!!')
+        .ok('Home')
+	)}
+
+	this.showAlertFail = function(coverage){
+		$mdDialog.show(
+			$mdDialog.alert()
+				.parent(angular.element(document.querySelector('#popupContainer')))
+				.clickOutsideToClose(true)
+				.title('Close, try again!!')
+				.textContent('You only had: ' + coverage + '% coverage')
+				.ariaLabel('Try again')
+				.ok('Ok')
+	)}
 });
 
 app.directive('studioView', function(){

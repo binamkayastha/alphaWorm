@@ -43,7 +43,7 @@ app.controller('homeController', function() {
         fontsize: 300
       },
       {
-        done: true,
+        done: false,
         title: "Bus",
         font: "Arial",
         fontsize: 300
@@ -59,6 +59,32 @@ app.controller('homeController', function() {
         title: "Truck",
         font: "Arial",
         fontsize: 300
+      }
+    ]
+    this.languages = [
+      {
+        done: false,
+        title: "Hello",
+        font: "Arial",
+        fontsize: 100
+      },
+      {
+        done: false,
+        title: "Здравствуйте",
+        font: "Arial",
+        fontsize: 100
+      },
+      {
+        done: false,
+        title: "नमस्ते",
+        font: "Arial",
+        fontsize: 100
+      },
+      {
+        done: false,
+        title: "こんにちは",
+        font: "Arial",
+        fontsize: 100
       }
     ]
     this.getRandomColor = function () {
