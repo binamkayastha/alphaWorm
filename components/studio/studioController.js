@@ -130,18 +130,27 @@ var WILL = {
 	clear: function() {
 		this.strokesLayer.clear(this.backgroundColor);
 		this.canvas.clear(this.backgroundColor);
-	}
+	},
+
+  getPixels: function() {
+    console.log(document.getElementById("canvas"))
+    return document.getElementById("canvas").getContext("2d").getImageData();
+  }
 };
 
 var target = {
   init: function(width, height){
-    var traceTarget = document.getElementById("trace-target");
-    traceTarget.width = width;
-    traceTarget.height = height;
+    this.canvas = document.getElementById("trace-target");
+    this.canvas.width = width;
+    this.canvas.height = height;
 
-    var ctx = traceTarget.getContext("2d");
-    ctx.font = "30px Arial";
-    ctx.fillText("Hello World",10,50);
+    var ctx = this.canvas.getContext("2d");
+    ctx.font = "300px Arial";
+    ctx.fillText("A",width/2,height/2);
+  },
+
+  getPixels: function() {
+    return this.canvas.getContext("2d").getImageData();
   }
 }
 
@@ -155,6 +164,12 @@ app.controller('studioController', function(){
   var height = window.innerHeight - 100;
   WILL.init(width, height);
   target.init(width, height);
+
+  this.check = function(){
+    console.log("checking")
+    console.log(WILL.getPixels());
+    console.log(target.getPixels());
+  }
 });
 
 app.directive('studioView', function(){
