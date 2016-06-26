@@ -1,7 +1,7 @@
 var app = angular.module('studio', ['ngMaterial']);
 
 var WILL = {
-	backgroundColor: Module.Color.WHITE,
+	backgroundColor: Module.Color.TRANSPARENT,
 	color: Module.Color.from(204, 204, 204),
 
 	init: function(width, height) {
@@ -48,7 +48,7 @@ var WILL = {
 		this.inputPhase = Module.InputPhase.Begin;
 		if (e.changedTouches) e = e.changedTouches[0];
 
-		this.buildPath({x: e.clientX, y: e.clientY});
+		this.buildPath({x: e.clientX, y: (e.clientY - 50)});
 		this.drawPath();
 	},
 
@@ -57,7 +57,7 @@ var WILL = {
 		if (e.changedTouches) e = e.changedTouches[0];
 
 		this.inputPhase = Module.InputPhase.Move;
-		this.pointerPos = {x: e.clientX, y: e.clientY};
+		this.pointerPos = {x: e.clientX, y: (e.clientY - 50)};
 
 		if (WILL.frameID != WILL.canvas.frameID) {
 			var self = this;
@@ -77,7 +77,7 @@ var WILL = {
 		this.inputPhase = Module.InputPhase.End;
 		if (e.changedTouches) e = e.changedTouches[0];
 
-		this.buildPath({x: e.clientX, y: e.clientY});
+		this.buildPath({x: e.clientX, y: (e.clientY - 50)});
 		this.drawPath();
 
 		delete this.inputPhase;
@@ -133,14 +133,35 @@ var WILL = {
 	}
 };
 
-Module.addPostScript(function() {
-	WILL.init(1600, 600);
-});
+var target = {
+  init: function(width, height){
+    var traceTarget = document.getElementById("trace-target");
+    traceTarget.width = width;
+    traceTarget.height = height;
 
+    var ctx = traceTarget.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.fillText("Hello World",10,50);
+  }
+}
+
+app.controller('studioController', function(){
+  // TODO: figure out how to use Module
+  //      issue was that canvas was not ready when addPostScript is called
+  // Module.addPostScript(function() {
+  //   WILL.init(1600, 600);
+  // });
+  var width = window.innerWidth;
+  var height = window.innerHeight - 100;
+  WILL.init(width, height);
+  target.init(width, height);
+});
 
 app.directive('studioView', function(){
   return {
     restrict: 'E',
-    templateUrl: 'components/studio/studioView.html'
+    templateUrl: 'components/studio/studioView.html',
+    controller: 'studioController',
+    controllerAs: 'vm'
   };
 });

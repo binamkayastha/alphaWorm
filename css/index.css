@@ -132,3 +132,15 @@ h1 {
   width: 200px; }
 .dialogdemoBasicUsage div#status {
   color: #c60008; }
+
+
+/*ACTUAL CSS*/
+.studio {
+  position: relative;
+}
+
+.studio canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
