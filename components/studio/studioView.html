@@ -1,9 +1,11 @@
 <div class = "studio">
   <canvas id="trace-target"></canvas>
-  <canvas id="canvas" oncontextmenu="WILL.clear(); event.preventDefault();"></canvas>
-  <canvas id="test"></canvas>
+  <canvas id="canvas"></canvas>
 </div>
 
 <md-button class="md-raised" ng-click="vm.check()">
   <md-icon md-font-library="material-icons">check</md-icon> Check
+</md-button>
+<md-button class="md-raised" ng-click="vm.clear()">
+  <md-icon md-font-library="material-icons">close</md-icon> Clear
 </md-button>

@@ -159,7 +159,8 @@ var target = {
 
     var ctx = this.canvas.getContext("2d");
     ctx.font = "300px Arial";
-    ctx.fillText("A",width/2,height/2);
+		ctx.textAlign = "center"
+    ctx.fillText("Hello",width/2,height/2);
   },
 
   getPixels: function() {
@@ -202,76 +203,37 @@ app.controller('studioController', function(){
 	}
 
   this.check = function(){
-		testcanvas = document.getElementById("test");
-    testcanvas.width = width;
-		testcanvas.height = height;
-		testctx = testcanvas.getContext("2d");
+		var traceALPHA = getAlpha(WILL.getPixels());
+		var targetALPHA = getAlpha(target.getPixels());
 
-		WILLPix = WILL.getPixels();
-		targetPix = target.getPixels();
+		var hit = 0;
+		var totalTrace = 0;
+		var totalTarget = 0;
 
-		testctx.putImageData(new ImageData (new Uint8ClampedArray(WILLPix), width, height), 0, 0)
+		for(var i = 0; i < traceALPHA.length; i++){
+			hit += ((targetALPHA[i] - traceALPHA[i]) == 0 && targetALPHA[i] == 1) ? 1 : 0;
+			totalTrace += traceALPHA[i]
+			totalTarget += targetALPHA[i]
+		}
 
+		console.log("You had: " + hit + " hits out of " + totalTarget + " targets")
+		console.log("You had: " + hit + " hits out of " + totalTrace + " everything you traced")
+		console.log("accuracy target: " + hit/totalTarget)
+		console.log("accuracy trace: " + hit/totalTrace)
+		console.log("----")
 
-		//-----------------
-  //   console.log("checking")
-  //   console.log(WILL.getPixels());
-	//
-  // //   console.log(target.getPixels());
-	//
-	// 				testcanvas = document.getElementById("test");
-	// 		    testcanvas.width = width;
-	// 				testcanvas.height = height;
-	// 				ctx = testcanvas.getContext("2d");
-	//
-	// 				var img = new Image;
-	// 				img.onload = function(){
-	// 					console.log("draw image")
-	// 				};
-	// 				img.src = target.getPixels();
-	// 				ctx.putImageData(new ImageData(new Uint8ClampedArray(WILL.getPixels()), width, height),0,0); // Or at whatever offset you like
-//--------------------
-	//
-	// 	var WILLData = new ImageData(new Uint8ClampedArray(WILL.getPixels()), width, height);
-	// 	var targetData = target.getPixels();
-	// 	testcanvas.getContext("2d").putImageData(targetData, 0, 0)
-	//
-  //   var ctx = this.canvas.getContext("2d");
-  //   ctx.font = "300px Arial";
-	//
-	// 	var traceALPHA = getAlpha(WILL.getPixels());
-	// 	var targetALPHA = getAlpha(target.getPixels());
-	//
-	// 	var test = 0
-	// 	var sum = 0
-	// 	var sump=0
-	// 	for(var i = 0; i < targetALPHA.length; i++) {
-	// 		sump+=targetALPHA[i]
-	// 	}
-	// 	console.log("------------------" + sump)
-	// 	console.log(traceALPHA.length + " ???? " + targetALPHA.length)
-	//
-	// 	console.log(traceALPHA)
-	// 	console.log(targetALPHA)
-	//
-	// 	var hit = 0;
-	// 	var totalTrace = 0;
-	// 	var totalTarget = 0;
-	//
-	// 	for(var i = 0; i < traceALPHA.length; i++){
-	// 		hit += ((targetALPHA[i] - traceALPHA[i]) == 0 && targetALPHA[i] == 1) ? 1 : 0;
-	// 		totalTrace += traceALPHA[i]
-	// 		totalTarget += targetALPHA[i]
-	// 	}
-	//
-	// 	totalTarget = sump;
-	//
-	// 	console.log("You had: " + hit + " hits out of " + totalTarget + " targets")
-	// 	console.log("You had: " + hit + " hits out of " + totalTrace + " everything you traced")
-	// 	console.log("accuracy target: " + hit/totalTarget)
-	// 	console.log("accuracy trace: " + hit/totalTrace)
-	// 	console.log("----")
+		var accuracy = (hit/totalTrace * 100)
+		var pass = (hit/totalTarget)>0.3;
+
+		console.log("ACCURACY:: " + hit/totalTrace * 100)
+		console.log("REQUIREMENT:: " + pass)
+
+		WILL.clear();
   }
+
+	this.clear = function(){
+		WILL.clear();
+	}
 });
 
 app.directive('studioView', function(){
