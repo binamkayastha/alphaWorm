@@ -133,8 +133,12 @@ var WILL = {
 	},
 
   getPixels: function() {
-    console.log(document.getElementById("canvas"))
-    return document.getElementById("canvas").getContext("2d").getImageData();
+		// var canvas = document.getElementById("canvas");
+		// var gl = canvas.getContext("webgl");
+		// var pixels = new Uint8Array(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
+		// gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+
+		return this.canvas.readPixels(0,0,100,100);
   }
 };
 
@@ -150,7 +154,9 @@ var target = {
   },
 
   getPixels: function() {
-    return this.canvas.getContext("2d").getImageData();
+		console.log(this.canvas.width)
+		console.log(this.canvas.height)
+    return document.getElementById("trace-target").getContext("2d").getImageData(0,0,this.canvas.width, this.canvas.height).data;
   }
 }
 
@@ -162,13 +168,66 @@ app.controller('studioController', function(){
   // });
   var width = window.innerWidth;
   var height = window.innerHeight - 100;
+	width = 100
+	height = 100
   WILL.init(width, height);
   target.init(width, height);
+
+	var getAlpha = function(pixels){
+		// Alpha is the 4th value in RGBA
+		var ALPHA = [];
+		var sum = 0
+		var sump=0
+		for(var i = 0; i < pixels.length; i++) {
+			sum += pixels[i]
+			if((i+1)%4 == 0){
+				// console.log(i)
+				var p = pixels[i] > 0 ? 1 : 0
+				ALPHA.push(p);
+				sump += p;
+			}
+		}
+		console.log("for length-- " + pixels.length + "sum is::::" + sum + " sump::" + sump)
+		return ALPHA;
+	}
 
   this.check = function(){
     console.log("checking")
     console.log(WILL.getPixels());
     console.log(target.getPixels());
+
+		var traceALPHA = getAlpha(WILL.getPixels());
+		var targetALPHA = getAlpha(target.getPixels());
+
+		var test = 0
+		var sum = 0
+		var sump=0
+		for(var i = 0; i < targetALPHA.length; i++) {
+			sump+=targetALPHA[i]
+		}
+		console.log("------------------" + sump)
+		console.log(traceALPHA.length + " ???? " + targetALPHA.length)
+
+		console.log(traceALPHA)
+		console.log(targetALPHA)
+
+		var hit = 0;
+		var totalTrace = 0;
+		var totalTarget = 0;
+
+		for(var i = 0; i < traceALPHA.length; i++){
+			hit += ((targetALPHA[i] - traceALPHA[i]) == 0 && targetALPHA[i] == 1) ? 1 : 0;
+			totalTrace += traceALPHA[i]
+			totalTarget += targetALPHA[i]
+		}
+
+		totalTarget = sump;
+
+		console.log("You had: " + hit + " hits out of " + totalTarget + " targets")
+		console.log("You had: " + hit + " hits out of " + totalTrace + " everything you traced")
+		console.log("accuracy target: " + hit/totalTarget)
+		console.log("accuracy trace: " + hit/totalTrace)
+		console.log("----")
   }
 });
 
