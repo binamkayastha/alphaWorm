@@ -121,6 +121,33 @@ h1 {
 .dialogdemoBasicUsage div#status {
   color: #c60008; }
 
+/*animate*/
+/* The starting CSS styles for the enter animation */
+.fade.ng-enter {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+/* there is no need to define anything inside of the destination
+CSS class since the keyframe will take charge of the animation */
+.fade.ng-leave {
+  animation: my_fade_animation 0.5s linear;
+  -webkit-animation: my_fade_animation 0.5s linear;
+}
+
+@keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
 
 /*ACTUAL CSS*/
 .studio {
@@ -131,4 +158,11 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.fabmenu {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
 }

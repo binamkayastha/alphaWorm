@@ -12,13 +12,14 @@
 </head>
 
 <body ng-app="App" ng-cloak>
-  <home-view></home-view>
+  <main-view></main-view>
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="js/angular.min.js"></script>
   <script src="js/angular-animate.min.js"></script>
   <script src="js/angular-aria.min.js"></script>
   <script src="js/angular-messages.min.js"></script>
+  <script src="js/angular-route.min.js"></script>
 
   <!-- Angular Material Library -->
   <script src="js/angular-material.min.js"></script>
@@ -34,7 +35,10 @@
 
   <!-- App Modules -->
   <script type="text/javascript" src="components/home/homeController.js"></script>
+  <script type="text/javascript" src="components/settings/settingsController.js"></script>
   <script type="text/javascript" src="components/header/headerController.js"></script>
+  <script type="text/javascript" src="components/fabmenu/fabmenuController.js"></script>
   <script type="text/javascript" src="components/studio/studioController.js"></script>
+  <script type="text/javascript" src="components/app/app.js"></script>
 </body>
 </html>

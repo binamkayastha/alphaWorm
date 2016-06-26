@@ -1,4 +1,4 @@
-var app = angular.module('App', ['studio', 'header']);
+var app = angular.module('home', ['studio']);
 
 app.directive('homeView', function(){
   return {

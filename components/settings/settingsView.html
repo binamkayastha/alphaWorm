@@ -1,0 +1,10 @@
+<form name="settingsForm">
+  <md-input-container class="md-block">
+    <label>Name</label>
+  </md-input-container>
+  <md-select ng-model="vm.language">
+   <md-option ng-repeat="l in vm.languages" value="{{l}}" ng-disabled="$index === 1">
+     {{l}}
+   </md-option>
+ </md-select>
+</form>
