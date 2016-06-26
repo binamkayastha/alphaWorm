@@ -168,3 +168,20 @@ CSS class since the keyframe will take charge of the animation */
   right: 0;
   width: 100%;
 }
+
+md-grid-list {
+  margin: 8px; }
+ .gray {
+  background: #f5f5f5; }
+.green {
+  background: #b9f6ca; }
+.yellow {
+  background: #ffff8d; }
+.blue {
+  background: #84ffff; }
+.purple {
+  background: #b388ff; }
+.red {
+  background: #ff8a80; }
+ md-grid-tile {
+  transition: all 400ms ease-out 50ms; }

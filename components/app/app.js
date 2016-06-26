@@ -11,11 +11,13 @@ app.directive('mainView', function(){
 app.config(function($routeProvider) {
    $routeProvider
        .when('/', {
-           templateUrl : 'components/home/homeView.html'
+           templateUrl : 'components/home/homeView.html',
+           controller:"homeController"
        })
 
        .when('/home', {
-           templateUrl : 'components/home/homeView.html'
+           templateUrl : 'components/home/homeView.html',
+           controller: "homeController"
        })
 
        .when('/about', {
@@ -25,5 +27,15 @@ app.config(function($routeProvider) {
        .when('/settings', {
            templateUrl : 'components/settings/settingsView.html',
            controller  : 'settingsController'
+       })
+
+      //  .when('/studio', {
+      //      templateUrl : 'components/studio/studioView.html',
+      //      controller  : 'studioController'
+      //  })
+
+       .when('/studio/:text/:font/:fontsize', {
+           templateUrl : 'components/studio/studioView.html',
+           controller  : 'studioController'
        })
 });

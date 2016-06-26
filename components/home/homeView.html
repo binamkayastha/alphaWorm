@@ -1,1 +1,22 @@
-<studio-view></studio-view>
+<div ng-controller="homeController as vm" ng-cloak>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="item in vm.items">
+      <md-checkbox ng-model="item.done"></md-checkbox>
+      <div class="md-list-item-text" >
+        <h3>{{item.title}}</h3>
+      </div>
+      <md-button class="md-secondary" ng-href="#studio/{{item.title}}/{{item.font}}/{{item.fontsize}}">Start</md-button>
+    </md-list-item>
+  </md-list>
+  <md-divider></md-divider>
+  <md-subheader class="md-no-sticky">Transportation</md-subheader>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="item in vm.transportation">
+      <md-checkbox ng-model="item.done"></md-checkbox>
+      <div class="md-list-item-text" >
+        <h3>{{item.title}}</h3>
+      </div>
+      <md-button class="md-secondary" ng-href="#studio/{{item.title}}/{{item.font}}/{{item.fontsize}}">Start</md-button>
+    </md-list-item>
+  </md-list>
+</div>

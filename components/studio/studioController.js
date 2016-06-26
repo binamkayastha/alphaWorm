@@ -2,7 +2,7 @@ var app = angular.module('studio', ['ngMaterial']);
 
 var WILL = {
 	backgroundColor: Module.Color.TRANSPARENT,
-	color: Module.Color.from(204, 204, 204),
+	color: Module.Color.from(51,120,175),
 
 	init: function(width, height) {
 		this.initInkEngine(width, height);
@@ -135,32 +135,23 @@ var WILL = {
 	},
 
   getPixels: function() {
-		// var canvas = document.getElementById("canvas");
-		// var gl = canvas.getContext("webgl");
-		// //
-		// // return canvas.toDataURL();
-		//
-		// console.log(gl.drawingBufferWidth)
-		// console.log(gl.drawingBufferHeight)
-		// var pixels = new Uint8ClampedArray(gl.drawingBufferWidth * gl.drawingBufferHeight * 4);
-		// gl.readPixels(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
-		//
-		// return pixels;
-
 		return this.canvas.readPixels({top: 0, left: 0, right: this.width, bottom: this.height, width: this.width, height: this.height});
   }
 };
 
 var target = {
-  init: function(width, height){
+  init: function(width, height, text, font, fontsize){
     this.canvas = document.getElementById("trace-target");
     this.canvas.width = width;
     this.canvas.height = height;
 
     var ctx = this.canvas.getContext("2d");
-    ctx.font = "300px Arial";
+    ctx.font = fontsize + " " + font;
 		ctx.textAlign = "center"
-    ctx.fillText("Hello",width/2,height/2);
+    ctx.fillText(text,width/2,height/2);
+
+		console.log(font)
+		console.log(fontsize)
   },
 
   getPixels: function() {
@@ -170,7 +161,10 @@ var target = {
   }
 }
 
-app.controller('studioController', function(){
+app.controller('studioController', function($routeParams){
+	this.text =  $routeParams.text;
+	this.font = $routeParams.font;
+	this.fontsize = $routeParams.fontsize + "px";
   // TODO: figure out how to use Module
   //      issue was that canvas was not ready when addPostScript is called
   var width = window.innerWidth;
@@ -181,7 +175,7 @@ app.controller('studioController', function(){
 	// Module.addPostScript(function() {
 	// 	WILL.init(width, height);
 	// });
-  target.init(width, height);
+  target.init(width, height, this.text, this.font, this.fontsize);
 
 
 	var getAlpha = function(pixels){
